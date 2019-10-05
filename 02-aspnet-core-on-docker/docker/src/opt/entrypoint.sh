@@ -1,0 +1,3 @@
+# change xml file
+
+exec "$@"
