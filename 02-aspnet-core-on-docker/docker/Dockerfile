@@ -1,4 +1,7 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+# -----------------------------------------------------
+# Build Stage
+# -----------------------------------------------------
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 
 WORKDIR /src
 
@@ -10,7 +13,12 @@ COPY ./ ./
 
 RUN dotnet publish -c Release -o /docker-demo
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+# -----------------------------------------------------
+# Runtime Stage - Final image
+# -----------------------------------------------------
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
+
+COPY ./docker/src/opt/entrypoint.sh /opt/entrypoint.sh
 
 WORKDIR /docker-demo
 

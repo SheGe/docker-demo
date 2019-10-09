@@ -1,3 +1,3 @@
-# change xml file
+#!/usr/bin/env bash
 
 exec "$@"
